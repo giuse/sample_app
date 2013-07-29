@@ -3,7 +3,7 @@
 
 require 'active_support/inflector'
 
-guard 'spork', rspec_env:    { 'RAILS_ENV' => 'test' } do
+guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/environments/test.rb')
@@ -11,8 +11,8 @@ guard 'spork', rspec_env:    { 'RAILS_ENV' => 'test' } do
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
+  watch('spec/support/utilities.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
-  watch(%r{features/support/}) { :cucumber }
 end
 
 guard 'rspec', all_after_pass: false, cli: '--drb' do
@@ -52,14 +52,3 @@ guard 'rspec', all_after_pass: false, cli: '--drb' do
   end
 end
 
-
-guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch('config/environments/test.rb')
-  watch(%r{^config/initializers/.+\.rb$})
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('spec/spec_helper.rb') { :rspec }
-  watch('test/test_helper.rb') { :test_unit }
-end
