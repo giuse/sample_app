@@ -13,6 +13,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
   watch('spec/support/utilities.rb') { :rspec }
+  watch('spec/factories.rb') { :rspec }
 end
 
 guard 'rspec', all_after_pass: false, cli: '--drb' do
