@@ -13,11 +13,10 @@ describe "Authentication" do
 
   describe "signin" do
 
-    before{ visit signin_path }
-    let(:sign_in) { "Sign in" }
+    before { visit signin_path }
 
     describe "with invalid information" do
-      before { click_button sign_in }
+      before { invalid_signin }
 
       it { should have_title('Sign in') }
       it { should have_error_message("Invalid") }

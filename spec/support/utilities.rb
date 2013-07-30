@@ -3,7 +3,11 @@ include ApplicationHelper
 def valid_signin(user)
   fill_in "Email",    with: user.email
   fill_in "Password", with: user.password
-  click_button "Sign in"
+  click_button "Sign me up"
+end
+ 
+def invalid_signin
+  click_button "Sign me up"
 end
 
 RSpec::Matchers.define :have_error_message do |message|
