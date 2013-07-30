@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'User pages' do
+describe 'User page' do
   
   define_buttons
   subject { page }
@@ -30,7 +30,7 @@ describe 'User pages' do
     end
   end
 
-  describe "profile page" do
+  describe "profile" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
@@ -41,10 +41,8 @@ describe 'User pages' do
   describe "signup" do
     before { visit signup_path }
 
-    describe "page" do
-      it { should have_content('Sign up') }
-      it { should have_title(full_title('Sign up')) }
-    end
+    it { should have_content('Sign up') }
+    it { should have_title(full_title('Sign up')) }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -94,13 +92,10 @@ describe 'User pages' do
       sign_in user
       visit edit_user_path(user)
     end
-
-    describe "page" do
-      it { should have_content("Update your profile") }
-      it { should have_title("Edit user") }
-      it { should have_link('change', href: 'http://gravatar.com/emails')}
-      # it { should have_field_content("input#user_name", user.name) }
-    end
+    it { should have_content("Update your profile") }
+    it { should have_title("Edit user") }
+    it { should have_link('change', href: 'http://gravatar.com/emails')}
+    # it { should have_field_content("input#user_name", user.name) }
 
     describe "with invalid information" do
       before { click_button edit_btn }
