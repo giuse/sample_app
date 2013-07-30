@@ -12,6 +12,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
+  watch('spec/support/utilities.rb') { :rspec }
 end
 
 guard 'rspec', all_after_pass: false, cli: '--drb' do
@@ -49,6 +50,5 @@ guard 'rspec', all_after_pass: false, cli: '--drb' do
   watch(%r{^app/controllers/sessions_controller\.rb$}) do |m|
     "spec/requests/authentication_pages_spec.rb"
   end
-  watch('spec/support/utilities.rb') { :rspec }
 end
 
