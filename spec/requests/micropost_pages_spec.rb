@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "Micropost pages" do
 
   subject { page }
+  define_buttons
 
   let(:user) { FactoryGirl.create(:user) }
   before { sign_in user }

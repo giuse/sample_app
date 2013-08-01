@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def feed
+    microposts
+  end
+
   def to_s
     "#{self.id}. #{self.name}, #{self.email}"
   end
