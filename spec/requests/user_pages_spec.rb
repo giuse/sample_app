@@ -53,15 +53,17 @@ describe 'User pages' do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-
+    
     before { visit user_path(user) }
 
     it { should have_content(user.name) }    
     it { should have_title(user.name) }  
 
     describe "microposts" do
+
       let!(:m1) { user.microposts.create(content: "Foo") }
       let!(:m2) { user.microposts.create(content: "Bar") }
+      before { visit user_path(user) }
 
       it { should have_content(m1.content) }
       it { should have_content(m2.content) }
