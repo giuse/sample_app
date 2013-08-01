@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'User page' do
+describe 'User pages' do
   
   define_buttons
   subject { page }
@@ -51,12 +51,22 @@ describe 'User page' do
     end
   end
 
-  describe "profile" do
+  describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+
     before { visit user_path(user) }
 
     it { should have_content(user.name) }    
-    it { should have_title(user.name) }    
+    it { should have_title(user.name) }  
+
+    describe "microposts" do
+      let!(:m1) { user.microposts.create(content: "Foo") }
+      let!(:m2) { user.microposts.create(content: "Bar") }
+
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
   end
 
   describe "signup" do

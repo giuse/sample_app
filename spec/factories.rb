@@ -7,8 +7,15 @@ FactoryGirl.define do
     sequence(:email) { |n| "email.#{n}@example.com"}
     password  "foobar"
     password_confirmation "foobar"
+
     factory :admin do
       admin true
     end
+  end
+
+  factory :micropost do
+    content "Lorem ipsum"
+    # created_at Time.at(1.years.ago.to_f + rand * (Time.now.to_f - 1.years.ago.to_f))
+    user
   end
 end
