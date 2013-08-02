@@ -66,7 +66,7 @@ describe "Authentication" do
         end
 
         describe "visiting the 'followed' page" do
-          before { visit followed_user_path user}
+          before { visit followers_user_path user}
           it { should have_title 'Sign in' }
         end
       end
@@ -84,6 +84,18 @@ describe "Authentication" do
         end
       end
   
+      describe "in the Relationships controller" do
+        describe "submitting to the create action" do
+          before { post relationships_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+
       describe "when attempting to reach a protected page" do
         before do
           visit edit_user_path(user)
